@@ -39,7 +39,8 @@ public class Main {
 
 
         printWelcomeMessage(listWithSongNames,listWithAlbumNames,listWithPodcastNames);
-        jesus.info(jesus);
+        jesus.info(legman);
+
 
     }
 

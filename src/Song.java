@@ -13,15 +13,7 @@ public class Song extends Medium{
     }
 
 
-    public void info(Song song) {
-        System.out.println("(SONG)"+
-                song.title+
-                song.artist.toString()+
-                song.releaseYear+
-                song.length+
-                song.genre+
-                song.lyrics.split("\\s").length);
-    }
+
     @Override
     public void play() {
         System.out.println("Now Playing: " + this.title);

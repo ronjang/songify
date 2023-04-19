@@ -7,9 +7,18 @@ public class Album extends Medium{
         this.songList = songList;
         listWithAlbumNames.add(this.title);
     }
+
+    public String getMostPopularGenre(){
+        for (int i = 0; i < this.songList.toArray().length; i++) {
+           return this.songList.get(i).getGenre();
+        }
+        return null;
+    }
     public String getFirstSongName(ArrayList<Song> songList){
         return songList.get(0).getTitle();
     }
+
+
     @Override
     public void play() {
         System.out.println("Now Playing: " + getFirstSongName(songList));
