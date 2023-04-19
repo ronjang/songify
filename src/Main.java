@@ -34,8 +34,7 @@ public class Main {
 
 
         Album legman = new Album(listWithAlbumNames,"Legman", tylerTheCreator, "Mixed",1234, 2023,new ArrayList<>(List.of(loveCraft,hyperHardcore,dogtooth)));
-
-
+        System.out.println(legman.getMostPopularGenre());
 
 
         printWelcomeMessage(listWithSongNames,listWithAlbumNames,listWithPodcastNames);

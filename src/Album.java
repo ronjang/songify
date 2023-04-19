@@ -8,8 +8,10 @@ public class Album extends Medium{
         listWithAlbumNames.add(this.title);
     }
 
+
     public String getMostPopularGenre(){
         for (int i = 0; i < this.songList.toArray().length; i++) {
+           // Hashmap benutzen
            return this.songList.get(i).getGenre();
         }
         return null;
