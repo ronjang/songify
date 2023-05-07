@@ -1,22 +1,44 @@
-import java.util.ArrayList;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Album extends Medium{
-    ArrayList<Song> songList;
-    public Album(ArrayList<String> listWithAlbumNames, String title, Artist artist, String genre, int length, int releaseYear, ArrayList<Song> songList) {
-        super(title, artist, genre, length, releaseYear);
+    List<Song> songList;
+    public Album(String title, Artist artist, int length, int releaseYear, @org.jetbrains.annotations.NotNull List<Song> songList) {
+
+        super(title, artist, null, length, releaseYear);
         this.songList = songList;
-        listWithAlbumNames.add(this.title);
+        songList.stream().distinct();
+        genre = getMostPopularGenre();
     }
 
 
     public String getMostPopularGenre(){
-        for (int i = 0; i < this.songList.toArray().length; i++) {
-           // Hashmap benutzen
-           return this.songList.get(i).getGenre();
+        String mostPopularGenre = "";
+        Map<String, Integer> genres = new HashMap<>();
+        for (Song song : this.songList) {
+            genres.merge(song.getGenre(), 1, Integer::sum);
         }
-        return null;
+        for (Song song : this.songList) {
+            int valueOfCurrentMostPopularGenre = 0;
+            if (genres.get(song.genre) > valueOfCurrentMostPopularGenre) {
+                mostPopularGenre = song.genre;
+                valueOfCurrentMostPopularGenre = genres.get(song.genre);
+            }
+        }
+
+        return mostPopularGenre;
     }
-    public String getFirstSongName(ArrayList<Song> songList){
+    public void info() {
+        System.out.println("ALBUM("+
+                this.title+ ", " +
+                this.artist.firstName+ " " + this.artist.lastName + ", " +
+                this.releaseYear+ ", " +
+                this.songList.stream().map(Medium::getLength).reduce(0, Integer::sum).toString()+ " Seconds" +", " +
+                this.getMostPopularGenre()+ ")");
+    }
+    public String getFirstSongName(List<Song> songList){
         return songList.get(0).getTitle();
     }
 
